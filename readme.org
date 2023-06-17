@@ -27,4 +27,4 @@
 | 段寄存器     | SS   | Stack Segment       |
 | 段寄存器     | ES   | Extra Segment       |
 ** 书籍及配套教材
-1. 《x86 汇编语言：从实模式到保护模式》 [[http://www.lizhongc.com/index.php/archives/10/][book]] | [[http://www.lizhongc.com/][李忠]]
+1. 《x86 汇编语言：从实模式到保护模式》 [[http://www.lizhongc.com/index.php/archives/10/][book]] | [[https://www.bilibili.com/video/BV1xE411N74T/?spm_id_from=333.337.search-card.all.click&vd_source=3a56932406d5df288a20eff532848982][video]] | [[http://www.lizhongc.com/][李忠]]

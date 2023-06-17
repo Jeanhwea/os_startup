@@ -9,7 +9,7 @@ vmhd.vhd: boot.bin
 	dd if=boot.bin of=vmhd.vhd seek=0
 
 boot.bin: boot.s
-	nasm -o boot.bin boot.s
+	nasm -f bin -o boot.bin boot.s
 
 clean:
 	-rm *.bin *.vhd *.vhdx

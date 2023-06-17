@@ -2,7 +2,7 @@ all: boot kernel
 
 
 kernel: kernel.s
-	nasm kernel.s -o kernel
+	nasm -w-zeroing kernel.s -o kernel
 
 boot: boot.s
 	nasm boot.s -o boot

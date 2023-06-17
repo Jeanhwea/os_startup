@@ -2,7 +2,7 @@ all: vmhd.vhd
 
 # 按 [ctrl-a x] 退出 QEMU
 run: vmhd.vhd
-	-qemu-system-i386 vmhd.vhd -nographic
+	-qemu-system-i386 -nographic -hda vmhd.vhd
 
 # 制作硬盘镜像
 vmhd.vhd: boot.bin

@@ -5,6 +5,15 @@
 entry:
     jmp main
 
+;; 清屏
+cls:
+    pusha
+    mov al, 0x03
+    mov ah, 0x00
+    int 0x10
+    popa
+    ret
+
 ;; 打印字符串
 putstr:
     pusha
@@ -21,7 +30,8 @@ putc_end:
 
 ;; 主函数
 main:
-    mov cx, 5                   ; 打印的计数器
+    call cls
+    mov cx, 1                   ; 打印的计数器
 repeat:
     mov si, msg                 ; 读取 msg 地址到 SI
     call putstr

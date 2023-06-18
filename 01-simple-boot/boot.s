@@ -1,9 +1,11 @@
 [bits 16]                       ; 设置 16 位汇编
 [org 0x7c00]                    ; 设置起始地址, BIOS 默认跳转地址为 0x7c00
 
-_start:
+;; 入口函数
+entry:
     jmp main
 
+;; 打印字符串
 putstr:
     pusha
     mov ah, 0x0e                ; 设置中断为输出一个字符, teletype
@@ -17,6 +19,7 @@ putc_end:
     popa
     ret
 
+;; 主函数
 main:
     mov cx, 5                   ; 打印的计数器
 repeat:
@@ -27,6 +30,7 @@ repeat:
     jne repeat
     hlt                         ; 系统休眠
 
+;; 字符串常量定义
 msg:
     db 'Hello, Jeffrey!', 0x0d, 0x0a
     db 0                        ; 字符串结束符

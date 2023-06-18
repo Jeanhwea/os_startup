@@ -18,13 +18,13 @@ cls:
 putstr:
     pusha
     mov ah, 0x0e                ; 设置中断为输出一个字符, teletype
-putc_begin:
+.putc:
     lodsb                       ; 从 SI 中读取 1 byte 到 AL, 然后 SI++
     cmp al, 0                   ; AL 是否为 0
-    je putc_end                 ; if AL == 0, 函数返回
+    je .done_putstr             ; if AL == 0, 函数返回
     int 0x10                    ; 中断向屏幕输出一个字符
-    jmp putc_begin              ; 循环读取下一个字符
-putc_end:
+    jmp .putc                   ; 循环读取下一个字符
+.done_putstr:
     popa
     ret
 
@@ -32,12 +32,12 @@ putc_end:
 main:
     call cls
     mov cx, 1                   ; 打印的计数器
-repeat:
+.repeat:
     mov si, msg                 ; 读取 msg 地址到 SI
     call putstr
     dec cx
     cmp cx, 0
-    jne repeat
+    jne .repeat
     hlt                         ; 系统休眠
 
 ;; 字符串常量定义

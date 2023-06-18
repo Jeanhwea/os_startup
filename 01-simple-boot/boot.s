@@ -18,7 +18,7 @@ putc_end:
     ret
 
 main:
-    mov cx, 100
+    mov cx, 5
 repeat:
     mov si, msg                 ; 读取 msg 地址到 SI
     call putstr

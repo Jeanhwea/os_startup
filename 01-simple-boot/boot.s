@@ -18,7 +18,7 @@ putc_end:
     ret
 
 main:
-    mov cx, 5
+    mov cx, 5                   ; 打印的计数器
 repeat:
     mov si, msg                 ; 读取 msg 地址到 SI
     call putstr

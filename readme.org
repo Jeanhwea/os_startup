@@ -73,6 +73,50 @@
   int 0x10                        ; 打印 A
 #+END_SRC
 
+*** 控制流及函数调用
+~jmp $~, $ 表示当前标号, 该指令会死循环
+
+通常汇编的跳转通过 ~cmp~, ~je~, ~jmp~ 等指令配合实现，例如
+#+BEGIN_SRC asm
+  cmp ax, 4      ; if ax = 4
+  je ax_is_four  ; do something (by jumping to that label)
+  jmp else       ; else, do another thing
+  jmp endif      ; finally, resume the normal flow
+
+  ax_is_four:
+      .....
+      jmp endif
+
+  else:
+      .....
+      jmp endif  ; not actually necessary but printed here for completeness
+
+  endif:
+#+END_SRC
+
+函数调用也属于简单的跳转指令, 例如
+#+BEGIN_SRC asm
+  mov al, 'X'
+  jmp print
+  endprint:
+
+  print:
+      mov ah, 0x0e                ; tty code
+      int 0x10                    ; 打印 al 的字符
+      jmp endprint                ; 返回
+#+END_SRC
+
+由于函数调用非常常见, 会有一些指令来简化函数调用实现过程
+#+BEGIN_SRC asm
+  mov al, 'X'
+  call print
+
+  print:
+      mov ah, 0x0e                ; tty code
+      int 0x10                    ; 打印 al 的字符
+      ret
+#+END_SRC
+
 ** 书籍及配套教材
 1. 《x86 汇编语言：从实模式到保护模式》 [[http://www.lizhongc.com/index.php/archives/10/][book]] | [[https://www.bilibili.com/video/BV1xE411N74T/?spm_id_from=333.337.search-card.all.click&vd_source=3a56932406d5df288a20eff532848982][video]] | [[http://www.lizhongc.com/][李忠]]
 

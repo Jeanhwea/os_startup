@@ -26,6 +26,53 @@
 | 段寄存器     | DS   | Data Segment        |
 | 段寄存器     | SS   | Stack Segment       |
 | 段寄存器     | ES   | Extra Segment       |
+*** 栈 bp, sp
+1. sp 指向栈的顶端 stack pointer
+2. bp 指向栈的基地址 base pointer
+3. push 操作时, sp = sp - 2, bp 不变
+4. pop 操作时, sp = sp + 2, bp 不变
+
+#+BEGIN_SRC asm
+  .code16                         ; 16 bits mode
+
+  ;;; 初始化栈指针
+  mov bp, 0x8000
+  mov sp, bp                      ; sp = bp 时, 栈为空
+
+  ;;; 压入 3 个测试数据
+  ;;; sp = 0x8000, bp = 0x8000
+  push 'A'
+  ;;; sp = 0x7ffe, bp = 0x8000
+  push 'B'
+  ;;; sp = 0x7ffc, bp = 0x8000
+  push 'C'
+
+  ;;; 查看数据
+  mov bx, bp
+  mov al, [bx-2]
+  int 0x10                        ; 打印 A
+
+  mov bx, spp
+  mov al, [bx]
+  int 0x10                        ; 打印 C
+
+  ;;; 弹出数据
+  pop bx
+  ;;; sp = 0x7ffc, bp = 0x8000
+  mov al, bl
+  int 0x10                        ; 打印 C
+
+  pop bx
+  ;;; sp = 0x7ffe, bp = 0x8000
+  mov al, bl
+  int 0x10                        ; 打印 B
+
+  pop bx
+  ;;; sp = 0x8000, bp = 0x8000
+  mov al, bl
+  int 0x10                        ; 打印 A
+#+END_SRC
+
 ** 书籍及配套教材
 1. 《x86 汇编语言：从实模式到保护模式》 [[http://www.lizhongc.com/index.php/archives/10/][book]] | [[https://www.bilibili.com/video/BV1xE411N74T/?spm_id_from=333.337.search-card.all.click&vd_source=3a56932406d5df288a20eff532848982][video]] | [[http://www.lizhongc.com/][李忠]]
 

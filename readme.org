@@ -135,16 +135,17 @@
   int 0x10
 #+END_SRC
 *** 磁盘
-读取磁盘的指令需要将 ~al~ 设置成 ~0x02~ , 其他寄存器设置 cylinder, head 和
-sector, 然后调用中断 ~int 0x13~, 其中详细的中断参数见 [[https://stanislavs.org/helppc/int_13-2.html][link]]
+磁盘加载数据到内存采用 CHS 的寻址方式 (cylinder-head-sector), 读取磁盘的指令需要
+将 ~al~ 设置成 ~0x02~ , 通过寄存器传入起始 CHS 地址和需要读取到的扇区数量，然后
+调用中断 ~int 0x13~, 其中详细的中断参数见 [[https://stanislavs.org/helppc/int_13-2.html][link]]
 #+BEGIN_SRC text
-  AH = 02
+  AH = 02                                        读取操作的编码
   AL = number of sectors to read	(1-128 dec.)
   CH = track/cylinder number  (0-1023 dec., see below)
   CL = sector number  (1-17 dec.)
   DH = head number  (0-15 dec.)
   DL = drive number (0=A:, 1=2nd floppy, 80h=drive 0, 81h=drive 1)
-  ES:BX = pointer to buffer
+  ES:BX = pointer to buffer                      数据装载的内存起始地址
 
 
   on return:
@@ -175,6 +176,56 @@ sector, 然后调用中断 ~int 0x13~, 其中详细的中断参数见 [[https://
   mov ax, 0xFFFF
   add ax, 1                       ; ax = 0x0000 and carry = 1, 设置了溢出位
   jc label                        ; 如果溢出位设置了则跳转
+#+END_SRC
+
+加载磁盘数据的汇编代码
+#+BEGIN_SRC asm
+  ; load 'dh' sectors from drive 'dl' into ES:BX
+  disk_load:
+      pusha
+      ; reading from disk requires setting specific values in all registers
+      ; so we will overwrite our input parameters from 'dx'. Let's save it
+      ; to the stack for later use.
+      push dx
+
+      mov ah, 0x02 ; ah <- int 0x13 function. 0x02 = 'read'
+      mov al, dh   ; al <- number of sectors to read (0x01 .. 0x80)
+      mov cl, 0x02 ; cl <- sector (0x01 .. 0x11)
+                   ; 0x01 is our boot sector, 0x02 is the first 'available' sector
+      mov ch, 0x00 ; ch <- cylinder (0x0 .. 0x3FF, upper 2 bits in 'cl')
+      ; dl <- drive number. Our caller sets it as a parameter and gets it from BIOS
+      ; (0 = floppy, 1 = floppy2, 0x80 = hdd, 0x81 = hdd2)
+      mov dh, 0x00 ; dh <- head number (0x0 .. 0xF)
+
+      ; [es:bx] <- pointer to buffer where the data will be stored
+      ; caller sets it up for us, and it is actually the standard location for int 13h
+      int 0x13      ; BIOS interrupt
+      jc disk_error ; if error (stored in the carry bit)
+
+      pop dx
+      cmp al, dh    ; BIOS also sets 'al' to the # of sectors read. Compare it.
+      jne sectors_error
+      popa
+      ret
+
+
+  disk_error:
+      mov bx, DISK_ERROR
+      call print
+      call print_nl
+      mov dh, ah ; ah = error code, dl = disk drive that dropped the error
+      call print_hex ; check out the code at http://stanislavs.org/helppc/int_13-1.html
+      jmp disk_loop
+
+  sectors_error:
+      mov bx, SECTORS_ERROR
+      call print
+
+  disk_loop:
+      jmp $
+
+  DISK_ERROR: db "Disk read error", 0
+  SECTORS_ERROR: db "Incorrect number of sectors read", 0
 #+END_SRC
 ** 保护模式
 *** 适配 BIOS

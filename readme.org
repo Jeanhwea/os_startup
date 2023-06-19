@@ -73,7 +73,7 @@
   int 0x10                        ; 打印 A
 #+END_SRC
 
-*** 控制流及函数调用
+*** 分支
 ~jmp $~, $ 表示当前标号, 该指令会死循环
 
 通常汇编的跳转通过 ~cmp~, ~je~, ~jmp~ 等指令配合实现，例如
@@ -133,7 +133,7 @@
   mov al, [es:the_secret]
   int 0x10
 #+END_SRC
-*** 读取磁盘的数据
+*** 磁盘
 读取磁盘的指令需要将 ~al~ 设置成 ~0x02~ , 其他寄存器设置 cylinder, head 和
 sector, 然后调用中断 ~int 0x13~, 其中详细的中断参数见 [[https://stanislavs.org/helppc/int_13-2.html][link]]
 #+BEGIN_SRC text

@@ -9,6 +9,7 @@
 ** 8086 体系结构
 *** 概述
 8086 是 16 位的体系结构，采用小端的存储方式
+** 实模式
 *** 寄存器
 | 分类         | 名称 | 全称                |
 |--------------+------+---------------------|
@@ -175,6 +176,9 @@ sector, 然后调用中断 ~int 0x13~, 其中详细的中断参数见 [[https://
   add ax, 1                       ; ax = 0x0000 and carry = 1, 设置了溢出位
   jc label                        ; 如果溢出位设置了则跳转
 #+END_SRC
+** 保护模式
+*** 适配 BIOS
+*** GDT
 
 ** 书籍及配套教材
 1. 《x86 汇编语言：从实模式到保护模式》 [[http://www.lizhongc.com/index.php/archives/10/][book]] | [[https://www.bilibili.com/video/BV1xE411N74T/?spm_id_from=333.337.search-card.all.click&vd_source=3a56932406d5df288a20eff532848982][video]] | [[http://www.lizhongc.com/][李忠]]

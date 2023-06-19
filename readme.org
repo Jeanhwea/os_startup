@@ -126,6 +126,12 @@
   ;;; 默认使用 ds 段寄存器作为基地址
   mov al, [msg]
   int 0x10
+
+  ;;; 使用 es 段寄存器进行寻址
+  mov bx, 0x7c0
+  mov es, bx
+  mov al, [es:the_secret]
+  int 0x10
 #+END_SRC
 
 ** 书籍及配套教材

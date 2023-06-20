@@ -73,6 +73,8 @@
   mov al, bl
   int 0x10                        ; 打印 A
 #+END_SRC
+*** 中断
+BIOS 通过中断提供一下操作硬件的基本程序，具体中断参考手册见 [[https://stanislavs.org/helppc/idx_interrupt.html][link]]
 
 *** 分支
 ~jmp $~, $ 表示当前标号, 该指令会死循环

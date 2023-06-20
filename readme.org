@@ -262,7 +262,7 @@
       ret
 #+END_SRC
 
-*** GDT
+*** 保护模式下的 GDT
 1. GDT 主要保护以下信息, 总共 64 位, [[https://files.osdev.org/mirrors/geezer/os/pm.htm][link]]
    - base  = low(16) + middle(8) + high(8)
    - limit = low(16) + high(4)

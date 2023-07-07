@@ -9,7 +9,7 @@ begbss:
 
 .text
 
-BOOTSEG=0x7c00
+BOOTSEG=0x7c00                  ; BISO start address
 
 entry start
 start:
@@ -33,8 +33,8 @@ msg1:
     .ascii "Loading system..."
     .byte 13,10
 
-.org 510
-    .word 0xaa55
+.org 510                        ; start at 0x510
+    .word 0xaa55                ; BIOS checksum
 
 .text
 endtext:

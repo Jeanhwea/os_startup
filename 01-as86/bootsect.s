@@ -31,7 +31,7 @@ loop1: jmp loop1
 
 msg1:
     .ascii "Loading system..."
-    .byte 13,10
+    .byte 13, 10
 
 .org 510                        ; start at 0x510
     .word 0xaa55                ; BIOS checksum

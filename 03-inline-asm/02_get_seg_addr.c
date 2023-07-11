@@ -13,5 +13,13 @@
 
 int main (int argc, char *argv[])
 {
+    char esp;
+    __asm__("mov ax, esp": "=a" (esp));
+    printf("esp = %x\n", esp);
+
+    char seq[10] = {1, 2, 3, 4};
+    int i = 2;
+    char ans = get_seg_byte(seq, (i+seq));
+    printf("ans = %02x\n", ans);
     return 0;
 }

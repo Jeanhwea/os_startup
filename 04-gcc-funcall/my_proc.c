@@ -6,16 +6,17 @@ extern void mywrite(int, char *, int);
 
 int main (int argc, char *argv[])
 {
-    char buf[1024];
     int a, b, ans;
 
-    char *mystr = "Calculating ...\n";
-    char *emsg = "Error in handling\n";
+    a = 1, b = 2;
+    printf("addr = %p\n", (void *)&ans);
+    myadd(a, b, &ans);
+    printf("ans = %d\n", ans);
 
-    char *test = "aaa\n";
-    mywrite(1, test, 4);
+    // char buf[1024];
+    // char *mystr = "Calculating ...\n";
+    // char *emsg = "Error in handling\n";
 
-    // a = 5, b = 10;
     // mywrite(1, mystr, strlen(mystr));
     // if (myadd(a, b, &ans)) {
     //     sprintf(buf, "The answer is %d\n", ans);

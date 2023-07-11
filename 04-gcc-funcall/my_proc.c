@@ -13,7 +13,7 @@ int main (int argc, char *argv[])
     char *emsg = "Error in handling\n";
 
     char *test = "aaa\n";
-    mywrite(1, test, strlen(test));
+    mywrite(1, test, 4);
 
     // a = 5, b = 10;
     // mywrite(1, mystr, strlen(mystr));

@@ -12,14 +12,17 @@ int main (int argc, char *argv[])
     char *mystr = "Calculating ...\n";
     char *emsg = "Error in handling\n";
 
-    a = 5, b = 10;
-    mywrite(1, mystr, strlen(mystr));
-    if (myadd(a, b, &ans)) {
-        sprintf(buf, "The answer is %d\n", ans);
-        mywrite(1, buf, strlen(buf));
-    } else {
-        mywrite(1, emsg, strlen(emsg));
-    }
+    char *test = "aaa\n";
+    mywrite(1, test, strlen(test));
+
+    // a = 5, b = 10;
+    // mywrite(1, mystr, strlen(mystr));
+    // if (myadd(a, b, &ans)) {
+    //     sprintf(buf, "The answer is %d\n", ans);
+    //     mywrite(1, buf, strlen(buf));
+    // } else {
+    //     mywrite(1, emsg, strlen(emsg));
+    // }
 
     return 0;
 }

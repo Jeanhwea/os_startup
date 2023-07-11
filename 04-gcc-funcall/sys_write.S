@@ -20,12 +20,11 @@ myadd:
     push %rbp
     mov %rsp, %rbp
     mov %esi, %eax              # int a
-    mov %edi, %edx              # int b
+    mov %edi, %ebx              # int b
     xor %ecx, %ecx              # overflow if %rcx = 0
-    add %eax, %edx
+    add %eax, %ebx
     jo  1f                      # jmp if overflow
-    mov 22(%rbp), %rax
-    mov %edx, (%rax)
+    mov %ebx, (%rdx)
 1:  mov %ecx, %eax
     mov %rbp, %rsp
     pop %rbp

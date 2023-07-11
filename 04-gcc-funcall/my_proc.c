@@ -4,13 +4,19 @@
 extern int myadd(int, int, int*);
 extern void mywrite(int, char *, int);
 
+int add2(int a, int b, int *ans) {
+    *ans = a + b;
+    return 0;
+}
+
 int main (int argc, char *argv[])
 {
     int a, b, ans;
 
-    a = 1, b = 2;
-    printf("addr = %p\n", (void *)&ans);
+    a = 19, b = 38;
+    // printf("addr = %p\n", (void *)&ans);
     myadd(a, b, &ans);
+    // add2(a, b, &ans);
     printf("ans = %d\n", ans);
 
     // char buf[1024];

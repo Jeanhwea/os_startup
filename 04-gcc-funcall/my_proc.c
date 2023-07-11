@@ -1,6 +1,9 @@
 #include <string.h>
 #include <stdio.h>
 
+extern int myadd(int, int, int*);
+extern void mywrite(int, char *, int);
+
 int main (int argc, char *argv[])
 {
     char buf[1024];

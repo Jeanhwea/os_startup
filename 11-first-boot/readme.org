@@ -4,6 +4,16 @@
 #+DATE: <2023-07-17 Mon 09:35:51>
 #+STARTUP: overview num indent
 
+
+* 8086 工具安装
+在当前操作系统中安装
+#+BEGIN_SRC sh
+  # Ubuntu
+  apt-get install bin86
+  # Redhat
+  yum install -y dev86
+#+END_SRC
+
 * 文件结构
 gdb 启动调试
 #+BEGIN_SRC sh

@@ -31,7 +31,7 @@ start:
 
 debug: System.map
 	qemu-system-i386 -s -fda Image &
-	$(GDB)	-ex "target remote localhost:1234"
+	$(GDB) -ex "target remote localhost:1234"
 
 head.o: head.s
 

@@ -6,7 +6,7 @@ LD      = i386-elf-ld
 LDFLAGS = -m elf_i386 -Ttext 0 -e startup_32 -s -x -M
 # LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
 
-all:	Image
+all: Image
 
 Image: boot system
 	dd bs=32 if=boot of=Image skip=1
@@ -19,10 +19,10 @@ disk: Image
 
 head.o: head.s
 
-system:	head.o
+system: head.o
 	$(LD) $(LDFLAGS) head.o  -o system > System.map
 
-boot:	boot.s
+boot: boot.s
 	$(AS86) -o boot.o boot.s
 	$(LD86) -s -o boot boot.o
 

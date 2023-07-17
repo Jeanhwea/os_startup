@@ -5,3 +5,12 @@
 #+STARTUP: overview num indent
 
 * 文件结构
+gdb 启动调试
+#+BEGIN_SRC sh
+  make debug
+#+END_SRC
+
+BIOS 断电
+#+BEGIN_SRC sh
+  (gdb) b *0x7c00
+#+END_SRC

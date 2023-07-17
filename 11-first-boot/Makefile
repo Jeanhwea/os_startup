@@ -1,10 +1,10 @@
 # Makefile for the simple example kernel.
-AS86    =as86 -0 -a
-LD86    =ld86 -0
-AS      =as
-LD      =ld
-# LDFLAGS =-m elf_i386 -Ttext 0 -e startup_32 -s -x -M
-LDFLAGS =-Ttext 0 -e startup_32 -s -x -M
+AS86    = as86 -0 -a
+LD86    = ld86 -0
+AS      = i386-elf-as
+LD      = i386-elf-ld
+LDFLAGS = -m elf_i386 -Ttext 0 -e startup_32 -s -x -M
+# LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
 
 all:	Image
 

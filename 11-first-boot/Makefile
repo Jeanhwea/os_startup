@@ -9,15 +9,15 @@
 AS86    = as86 -0 -a
 LD86    = ld86 -0
 
-# AS      = i386-elf-as
-# LD      = i386-elf-ld
-# GDB     = i386-elf-gdb
-# LDFLAGS = -m elf_i386 -Ttext 0 -e startup_32 -s -x -M
+AS      = i386-elf-as
+LD      = i386-elf-ld
+GDB     = i386-elf-gdb
+LDFLAGS = -m elf_i386 -Ttext 0 -e startup_32 -s -x -M
 
-AS      = as
-LD      = ld
-GDB     = gdb
-LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
+# AS      = as
+# LD      = ld
+# GDB     = gdb
+# LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
 
 all: Image
 
@@ -40,7 +40,7 @@ debug: System.map
 head.o: head.s
 
 system.bin: head.o
-	$(LD) $(LDFLAGS) head.o  -o system.bin > System.map
+	$(LD) $(LDFLAGS) head.o -o system.bin > System.map
 
 boot.bin: boot.s
 	$(AS86) -o boot.o boot.s

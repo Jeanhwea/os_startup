@@ -8,10 +8,10 @@ LDFLAGS = -m elf_i386 -Ttext 0 -e startup_32 -s -x -M
 
 all: Image
 
-Image: boot system
-	dd bs=32 if=boot of=Image skip=1
-	objcopy -O binary system head
-	cat head >> Image
+Image: boot.bin system.bin
+	dd bs=32 if=boot.bin of=Image skip=1
+	objcopy -O binary system.bin head.bin
+	cat head.bin >> Image
 
 disk: Image
 	dd bs=8192 if=Image of=/dev/fd0
@@ -19,12 +19,12 @@ disk: Image
 
 head.o: head.s
 
-system: head.o
-	$(LD) $(LDFLAGS) head.o  -o system > System.map
+system.bin: head.o
+	$(LD) $(LDFLAGS) head.o  -o system.bin > System.map
 
-boot: boot.s
+boot.bin: boot.s
 	$(AS86) -o boot.o boot.s
-	$(LD86) -s -o boot boot.o
+	$(LD86) -s -o boot.bin boot.o
 
 clean:
-	rm -f Image System.map core boot head *.o system
+	-rm -f Image System.map *.bin *.o

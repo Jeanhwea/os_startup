@@ -6,6 +6,5 @@
 *.vhd
 *.vhdx
 
-11-first-boot/*
-!*.s
-!Makefile
+Image
+System.map

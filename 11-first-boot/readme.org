@@ -1,0 +1,7 @@
+#+TITLE: 8086 汇编启动系统
+#+AUTHOR: Jinghui Hu
+#+EMAIL: hujinghui@buaa.edu.cn
+#+DATE: <2023-07-17 Mon 09:35:51>
+#+STARTUP: overview num indent
+
+* 文件结构

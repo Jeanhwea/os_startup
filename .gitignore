@@ -5,4 +5,7 @@
 *.img
 *.vhd
 *.vhdx
-boot
+
+11-first-boot/*
+!*.s
+!Makefile

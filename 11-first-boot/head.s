@@ -1,6 +1,7 @@
 #  head.s contains the 32-bit startup code.
 #  Two L3 task multitasking. The code of tasks are in kernel area,
 #  just like the Linux. The kernel code is located at 0x10000.
+.code32
 SCRN_SEL	= 0x18
 TSS0_SEL	= 0x20
 LDT0_SEL	= 0x28

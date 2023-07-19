@@ -17,9 +17,10 @@ Image: boot.bin
 
 debug: Image
 	qemu-system-i386 -s -fda Image 2>/dev/null &
-	$(GDB)  -ex "target remote localhost:1234" \
-			-ex "break *0x7c00" \
-			-ex "layout asm" -ex "layout reg"
+	gdb	-ex "target remote localhost:1234" \
+		-ex "break *0x7c00" \
+		-ex "layout asm" \
+		-ex "layout reg"
 
 clean:
 	-rm -f *.bin *.o Image

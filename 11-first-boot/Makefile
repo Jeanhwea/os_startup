@@ -7,10 +7,13 @@ LD      = i386-elf-ld
 GDB     = i386-elf-gdb
 LDFLAGS = -m elf_i386 -Ttext 0 -e startup_32 -s -x -M
 
+
 # AS      = as
 # LD      = ld
 # GDB     = gdb
 # LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
+
+QEMU = qemu-system-x86_64
 
 all: Image
 
@@ -24,10 +27,10 @@ disk: Image
 	sync;sync;sync
 
 start:
-	qemu-system-i386 -fda Image
+	$(QEMU) -fda Image
 
 debug: System.map
-	qemu-system-i386 -s -fda Image &
+	$(QEMU) -s -S -fda Image &
 	$(GDB) -ex "target remote localhost:1234"
 
 head.o: head.s

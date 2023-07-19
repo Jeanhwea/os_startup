@@ -6,7 +6,7 @@
     inc ax
     inc ax
     inc ax
-die:jmp     die
+die:jmp die
 
 times 510-($-$$) db 0
 dw 0xaa55

@@ -1,5 +1,4 @@
 [org 0x7c00]
-    mov bp, 0x9000
     mov ax, 1
     inc ax
     inc ax

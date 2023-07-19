@@ -2,19 +2,11 @@ BOOTSEG = 0x07c0
 
 entry start
 start:
-    mov     ax, #1
-    inc     ax
-    inc     ax
-    inc     ax
-    xor     ax, ax
     jmpi    go, #BOOTSEG
 
-go: mov     ax, #99
-    inc     ax
-    inc     ax
-    inc     ax
-    inc     ax
-    inc     ax
+go: mov     ah, #0x0e
+    mov     al, #0x58   ! char 'X'
+    int     0x10        ! print char
 
 die:jmp     die
 

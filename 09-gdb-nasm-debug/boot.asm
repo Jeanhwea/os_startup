@@ -3,6 +3,7 @@
     inc ax
     inc ax
     inc ax
+    xor ax, ax
     inc ax
     inc ax
 die:jmp die

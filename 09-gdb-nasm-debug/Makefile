@@ -22,4 +22,4 @@ debug: Image
 			-ex "layout asm" -ex "layout reg"
 
 clean:
-	-rm -f *.bin *.o
+	-rm -f *.bin *.o Image

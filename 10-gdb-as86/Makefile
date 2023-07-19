@@ -7,6 +7,8 @@ LD      = ld
 GDB     = gdb
 LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
 
+QEMU = qemu-system-x86_64
+
 all: Image
 
 Image: boot.bin
@@ -14,10 +16,10 @@ Image: boot.bin
 
 
 start:
-	qemu-system-i386 -fda Image
+	$(QEMU) -fda Image
 
 debug: Image
-	qemu-system-i386 -s -fda Image 2>/dev/null &
+	$(QEMU) -S -s -fda Image 2>/dev/null &
 	gdb	-ex "target remote localhost:1234" \
 		-ex "break *0x7c00" \
 		-ex "layout asm" \

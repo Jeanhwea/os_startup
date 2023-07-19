@@ -7,7 +7,7 @@ LD      = ld
 GDB     = gdb
 LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
 
-QEMU = qemu-system-x86_64
+QEMU = qemu-system-i386
 
 all: Image
 

@@ -15,6 +15,9 @@ Image: boot.bin
 	dd bs=32 if=boot.bin of=Image skip=1
 
 
+nox:
+	$(QEMU) -nographic -fda Image
+
 start:
 	$(QEMU) -fda Image
 

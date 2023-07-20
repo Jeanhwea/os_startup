@@ -7,6 +7,7 @@ start:
 go: mov     ah, #0x0e
     mov     al, #0x58   ! char 'X'
     int     0x10        ! print char
+    jmp     go
 
 die:jmp     die
 

@@ -24,7 +24,8 @@ debug: Image
 		-ex "set disassemble-next-line on" \
 		-ex "break *0x7c00" \
 		-ex "layout asm" \
-		-ex "layout reg"
+		-ex "layout reg" \
+		-ex "continue"
 
 boot.bin: boot.s
 	$(AS86) -o boot.o boot.s

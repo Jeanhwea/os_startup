@@ -7,7 +7,7 @@ GDB     = gdb
 LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
 QEMU    = qemu-system-i386
 
-all: Image
+all: debug
 
 Image: boot.bin
 	dd bs=32 if=boot.bin of=Image skip=1

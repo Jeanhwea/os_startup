@@ -5,11 +5,11 @@ AS      = i386-elf-as
 LD      = i386-elf-ld
 GDB     = i386-elf-gdb
 LDFLAGS = -m elf_i386 -Ttext 0 -e startup_32 -s -x -M
+QEMU    = qemu-system-x86_64
 # AS      = as
 # LD      = ld
 # GDB     = gdb
 # LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
-QEMU    = qemu-system-x86_64
 
 all: Image
 

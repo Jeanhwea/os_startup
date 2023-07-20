@@ -19,8 +19,8 @@ start:
 	$(QEMU) -fda Image
 
 debug: Image
-	$(QEMU) -S -s -m 512 -smp 1 -fda Image 2>/dev/null &
-	gdb	-ex "target remote localhost:1234" \
+	$(QEMU) -S -s -fda Image 2>/dev/null &
+	$(GDB) -ex "target remote localhost:1234" \
 		-ex "set disassemble-next-line on" \
 		-ex "set architecture i8086" \
 		-ex "layout asm" -ex "layout reg" \

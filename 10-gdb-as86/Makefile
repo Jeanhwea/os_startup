@@ -12,7 +12,6 @@ all: Image
 Image: boot.bin
 	dd bs=32 if=boot.bin of=Image skip=1
 
-
 nox:
 	$(QEMU) -nographic -fda Image
 
@@ -20,11 +19,12 @@ start:
 	$(QEMU) -fda Image
 
 debug: Image
-	$(QEMU) -S -s -fda Image 2>/dev/null &
+	$(QEMU) -S -s -m 512 -smp 1 -fda Image 2>/dev/null &
 	gdb	-ex "target remote localhost:1234" \
-		-ex "break *0x7c00" \
-		-ex "layout asm" \
-		-ex "layout reg"
+		-ex "set disassemble-next-line on" \
+		-ex "set architecture i8086" \
+		-ex "layout asm" -ex "layout reg" \
+		-ex "break *0x7c00"
 
 boot.bin: boot.s
 	$(AS86) -o boot.o boot.s

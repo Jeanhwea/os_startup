@@ -17,6 +17,7 @@ Image: boot.bin
 debug: Image
 	qemu-system-i386 -s -fda Image 2>/dev/null &
 	gdb	-ex "target remote localhost:1234" \
+		-ex "set disassemble-next-line on" \
 		-ex "break *0x7c00" \
 		-ex "layout asm" \
 		-ex "layout reg"

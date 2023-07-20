@@ -1,13 +1,11 @@
 # Makefile for the simple example kernel.
 AS86    = as86 -0 -a
 LD86    = ld86 -0
-
 AS      = as
 LD      = ld
 GDB     = gdb
 LDFLAGS = -Ttext 0 -e startup_32 -s -x -M
-
-QEMU = qemu-system-i386
+QEMU    = qemu-system-i386
 
 all: Image
 

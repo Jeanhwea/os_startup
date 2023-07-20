@@ -1,7 +1,6 @@
 # Makefile for the simple example kernel.
 AS86    = as86 -0 -a
 LD86    = ld86 -0
-
 AS      = i386-elf-as
 LD      = i386-elf-ld
 GDB     = i386-elf-gdb

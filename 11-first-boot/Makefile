@@ -3,7 +3,7 @@ AS86    = as86 -0 -a
 LD86    = ld86 -0
 AS      = i386-elf-as
 LD      = i386-elf-ld
-GDB     = i386-elf-gdb
+GDB     = gdb
 LDFLAGS = -m elf_i386 -Ttext 0 -e startup_32 -s -x -M
 QEMU    = qemu-system-x86_64
 # AS      = as
@@ -27,7 +27,9 @@ start:
 
 debug: System.map
 	$(QEMU) -s -S -fda Image &
-	$(GDB) -ex "target remote localhost:1234"
+	$(GDB) -ex "target remote localhost:1234" \
+		-ex "set disassemble-next-line on" \
+		-ex "break *0x7c00"
 
 head.o: head.s
 

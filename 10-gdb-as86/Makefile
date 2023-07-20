@@ -22,10 +22,10 @@ debug: Image
 	$(QEMU) -S -s -fda Image 2>/dev/null &
 	gdb	-ex "target remote localhost:1234" \
 		-ex "set disassemble-next-line on" \
-		-ex "break *0x7c00" \
+		-ex "set architecture i8086" \
 		-ex "layout asm" \
 		-ex "layout reg" \
-		-ex "continue"
+		-ex "break *0x7c00"
 
 boot.bin: boot.s
 	$(AS86) -o boot.o boot.s

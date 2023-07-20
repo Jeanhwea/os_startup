@@ -1,7 +1,6 @@
 # Makefile for the simple example kernel.
 AS86    = as86 -0 -a
 LD86    = ld86 -0
-
 AS      = i386-elf-as
 LD      = i386-elf-ld
 GDB     = i386-elf-gdb
@@ -18,6 +17,7 @@ Image: boot.bin
 debug: Image
 	qemu-system-i386 -s -fda Image 2>/dev/null &
 	gdb	-ex "target remote localhost:1234" \
+		-ex "set disassemble-next-line on" \
 		-ex "break *0x7c00" \
 		-ex "layout asm" \
 		-ex "layout reg"

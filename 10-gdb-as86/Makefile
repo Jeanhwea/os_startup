@@ -23,8 +23,8 @@ debug: Image
 	gdb	-ex "target remote localhost:1234" \
 		-ex "set disassemble-next-line on" \
 		-ex "set architecture i8086" \
-		-ex "layout reg" \
-		-ex "break *0x7c00"
+		-ex "layout asm" -ex "layout reg" \
+		-ex "break *0x7c07"
 
 boot.bin: boot.s
 	$(AS86) -o boot.o boot.s

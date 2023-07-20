@@ -23,7 +23,6 @@ debug: Image
 	gdb	-ex "target remote localhost:1234" \
 		-ex "set disassemble-next-line on" \
 		-ex "set architecture i8086" \
-		-ex "layout asm" \
 		-ex "layout reg" \
 		-ex "break *0x7c00"
 

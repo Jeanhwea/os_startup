@@ -1,0 +1,3 @@
+boot: floppy
+floppy_bootsig_check: disabled=0
+floppya: 1_44=Image, status=inserted

@@ -25,11 +25,14 @@ disk: Image
 start:
 	$(QEMU) -fda Image
 
-debug: System.map
+qemu: System.map
 	$(QEMU) -s -S -fda Image &
 	$(GDB) -ex "target remote localhost:1234" \
 		-ex "set disassemble-next-line on" \
 		-ex "break *0x7c00"
+
+bochs: Image
+	bochs -q -f bochsrc.bxrc
 
 head.o: head.s
 
